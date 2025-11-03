@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лабораторна 4 (Завдання 4)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+      h3 {
+        color: #555;
+        margin-top: 25px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+      }
+      /* Використовуємо <code> для семантичності та стилізації */
+      code {
+        background-color: #f4f4f4;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 1.1em;
+        display: block; /* Кожен вивід у своєму рядку */
+        margin-bottom: 10px;
+        /* Дозволяємо перенос довгих рядків */
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Результати виконання скрипту (lab4_4)</h2>
+
+    <script>
+      // Допоміжна функція для красивого виводу
+      function printArray(title, arr) {
+        document.write(`<h3>${title}:</h3>`);
+        // Використовуємо join, щоб отримати рядок з масиву
+        document.write(`<code>[${arr.join(", ")}]</code>`);
+      }
+
+      // --- Початкові масиви ---
+      let fruits = ["apple", "pineapple", "mango", "melon", "grape"];
+      let citrus = ["orange", "lemon", "lime"];
+
+      // --- 1. Вивести масив fruits ---
+      printArray("1. Початковий масив fruits", fruits);
+
+      // --- 2. Вивести масив citrus ---
+      printArray("2. Початковий масив citrus", citrus);
+
+      // --- 3. Об'єднаний масив fruits ---
+      // (Інтерпретація: об'єднуємо fruits та citrus і оновлюємо fruits)
+      fruits = fruits.concat(citrus);
+      printArray("3. Об'єднаний масив (fruits + citrus)", fruits);
+
+      // --- 4. Вставити 5 елементів після 'mango' ---
+      let itemsToInsert = ["pear", "cherry", "plum", "raspberry", "strawberry"];
+      // Знаходимо індекс 'mango'
+      let mangoIndex = fruits.indexOf("mango");
+
+      // Вставляємо на позицію *після* 'mango' (mangoIndex + 1)
+      // 0 - означає "нічого не видаляти"
+      // ... (spread-оператор) розгортає масив itemsToInsert в окремі елементи
+      if (mangoIndex !== -1) {
+        fruits.splice(mangoIndex + 1, 0, ...itemsToInsert);
+      }
+      printArray(
+        "4. Масив fruits (вставлено 5 елементів після 'mango')",
+        fruits
+      );
+
+      // --- 5. Видалити останні 3 елементи ---
+      // .splice(-3) видаляє 3 елементи з кінця
+      fruits.splice(-3);
+      printArray("5. Масив fruits (видалено останні 3 елементи)", fruits);
+
+      // --- 6. Відсортувати в алфавітному порядку ---
+      // .sort() без параметрів сортує рядки за алфавітом (і змінює масив)
+      fruits.sort();
+      printArray("6. Масив fruits (відсортовано за алфавітом)", fruits);
+
+      // --- 7. Вивести у зворотному алфавітному порядку ---
+      // Оскільки масив вже відсортований, .reverse() дасть зворотний алфавітний порядок
+      fruits.reverse();
+      printArray("7. Масив fruits (у зворотному алфавіті)", fruits);
+
+      // --- 8. Відсортувати за довжиною слів ---
+      // Використовуємо функцію порівняння всередині .sort()
+      fruits.sort((a, b) => a.length - b.length);
+      printArray("8. Масив fruits (відсортовано за довжиною слів)", fruits);
+    </script>
+  </body>
+</html>

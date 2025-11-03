@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лабораторна 4 (Завдання 1)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 1.1em;
+        display: block; /* Робимо кожен вивід у своєму рядку */
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Результати виконання скрипту (lab4_1)</h2>
+
+    <script>
+      // 1. Створення масиву "трикутних" чисел (Treag)
+      let Treag = [];
+      for (let n = 1; n <= 10; n++) {
+        let triangularNum = (n * (n + 1)) / 2;
+        Treag.push(triangularNum);
+      }
+
+      document.write("<h3>Масив 'трикутних' чисел (Treag):</h3>");
+      // Виведення через 2 пробіли, як вимагалось
+      document.write("<code>" + Treag.join("  ") + "</code>");
+
+      // ----------------------------------------------------
+
+      // 2. Створення масиву квадратів (kvd)
+      let kvd = [];
+      for (let i = 1; i <= 10; i++) {
+        kvd.push(i * i); // або Math.pow(i, 2)
+      }
+
+      document.write("<h3>Масив квадратів (kvd):</h3>");
+      // Виведення у рядок (тут використовуємо 1 пробіл для звичайного виводу)
+      document.write("<code>" + kvd.join(" ") + "</code>");
+
+      // ----------------------------------------------------
+
+      // 3. Об'єднання масивів (rez)
+      let rez = Treag.concat(kvd);
+      // Альтернативний (сучасний) спосіб: let rez = [...Treag, ...kvd];
+
+      document.write("<h3>Об'єднаний масив (rez):</h3>");
+      document.write("<code>" + rez.join(" ") + "</code>");
+
+      // ----------------------------------------------------
+
+      // 4. Сортування масиву rez у зворотному порядку (за спаданням)
+
+      // Для коректного числового сортування (а не рядкового),
+      // потрібно передати функцію порівняння.
+      // (a, b) => b - a  (для сортування за спаданням)
+      // (a, b) => a - b  (для сортування за зростанням)
+
+      rez.sort((a, b) => b - a);
+
+      document.write(
+        "<h3>Масив (rez) відсортований у зворотному порядку:</h3>"
+      );
+      document.write("<code>" + rez.join(" ") + "</code>");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лабораторна 4 (Завдання 3)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+      h3 {
+        border-top: 2px solid #eee;
+        padding-top: 10px;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 1.1em;
+        display: block; /* Робимо кожен вивід у своєму рядку */
+        margin-bottom: 15px;
+        word-wrap: break-word;
+      }
+      .highlight {
+        color: #b30000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Результати виконання скрипту (lab4_3)</h2>
+
+    <script>
+      // 1. Формування масиву (15 елементів)
+
+      let arr = [];
+      const N = 15;
+
+      // Генеруємо випадкові числа, включаючи від'ємні
+      // Наприклад, в діапазоні від -50 до +49
+      for (let i = 0; i < N; i++) {
+        let randomNum = Math.floor(Math.random() * 100) - 50;
+        arr.push(randomNum);
+      }
+
+      document.write("<h3>Початковий масив (15 елементів):</h3>");
+      document.write("<code>" + arr.join(" ") + "</code>");
+
+      // ----------------------------------------------------
+
+      // 2. Знайти середнє арифметичне від’ємних чисел
+
+      // 2.1. Використовуємо .filter() щоб отримати масив лише з від'ємними числами
+      let negativeNumbers = arr.filter((num) => num < 0);
+
+      document.write("<h3>Середнє арифметичне від’ємних чисел:</h3>");
+
+      if (negativeNumbers.length > 0) {
+        // 2.2. Використовуємо .reduce() щоб знайти їх суму
+        // (sum - акумулятор, current - поточний елемент, 0 - початкове значення sum)
+        let sumOfNegatives = negativeNumbers.reduce(
+          (sum, current) => sum + current,
+          0
+        );
+
+        // 2.3. Обчислюємо середнє арифметичне
+        let averageOfNegatives = sumOfNegatives / negativeNumbers.length;
+
+        document.write("<p>Знайдено від'ємні числа:</p>");
+        document.write("<code>" + negativeNumbers.join(" ") + "</code>");
+        document.write(
+          "<p>Сума: " +
+            sumOfNegatives +
+            ", Кількість: " +
+            negativeNumbers.length +
+            "</p>"
+        );
+        document.write(
+          "<p><b>Середнє арифметичне: " +
+            averageOfNegatives.toFixed(2) +
+            "</b></p>"
+        );
+      } else {
+        document.write("<p>Від'ємні числа у масиві відсутні.</p>");
+      }
+
+      // ----------------------------------------------------
+
+      // 3. Кількість чисел, що більші за А і стоять на парних місцях
+
+      // Задамо константу А (оскільки її не було вказано в умові)
+      const A = 10;
+
+      document.write("<h3>Кількість чисел > " + A + " на парних місцях:</h3>");
+
+      // Примітка: "Парні місця" в програмуванні зазвичай означають парні *індекси* (0, 2, 4...).
+
+      // Використовуємо .filter() з двома аргументами: (element, index)
+      let matchingElements = arr.filter((element, index) => {
+        // Умова 1: Елемент більший за A
+        let isGreaterThanA = element > A;
+        // Умова 2: Індекс парний
+        let isEvenIndex = index % 2 === 0;
+
+        return isGreaterThanA && isEvenIndex;
+      });
+
+      // Кількість таких чисел - це довжина відфільтрованого масиву
+      let count = matchingElements.length;
+
+      document.write(
+        "<p>Елементи, що задовольняють умову (більші за " +
+          A +
+          " та на парних індексах 0, 2, 4...):</p>"
+      );
+      document.write(
+        "<code>" +
+          (count > 0 ? matchingElements.join(" ") : "(немає)") +
+          "</code>"
+      );
+      document.write("<p><b>Загальна кількість: " + count + "</b></p>");
+    </script>
+  </body>
+</html>
